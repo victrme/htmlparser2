@@ -1,38 +1,41 @@
 {
-  "name": "@victr/htmlparser2",
-  "version": "0.0.1",
-  "description": "Fast & forgiving HTML/XML parser, on JSR.io",
-  "keywords": [
-    "html",
-    "parser",
-    "streams",
-    "xml",
-    "dom",
-    "rss",
-    "feed",
-    "atom"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/victrme/htmlparser2.git"
-  },
-  "license": "MIT",
-  "author": "Felix Boehm <me@feedic.com>",
-  "tasks": {
-    "format": "deno fmt",
-    "lint": "deno lint",
-    "test": "deno test"
-  },
-  "fmt": {
-    "tabWidth": 4
-  },
-  "files": ["src"],
-  "exports": "./src/index.ts",
-  "exclude": ["src/tests"],
-  "imports": {
-    "domelementtype": "npm:domelementtype@^2.3.0",
-    "domhandler": "npm:domhandler@^5.0.3",
-    "domutils": "npm:domutils@^3.1.0",
-    "entities": "npm:entities@^5.0.0"
-  }
+	"name": "@victr/htmlparser2",
+	"version": "0.0.1",
+	"description": "Fast & forgiving HTML/XML parser, on JSR.io",
+	"keywords": [
+		"html",
+		"parser",
+		"streams",
+		"xml",
+		"dom",
+		"rss",
+		"feed",
+		"atom"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/victrme/htmlparser2.git"
+	},
+	"license": "MIT",
+	"author": "Felix Boehm <me@feedic.com>",
+	"tasks": {
+		"format": "deno fmt",
+		"lint": "deno lint",
+		"test": "deno test"
+	},
+	"files": ["src"],
+	"exports": "./src/index.ts",
+	"exclude": ["src/tests"],
+	"imports": {
+		"domelementtype": "npm:domelementtype@^2.3.0",
+		"domhandler": "npm:domhandler@^5.0.3",
+		"domutils": "npm:domutils@^3.1.0",
+		"entities": "npm:entities@^5.0.0"
+	},
+	"fmt": {
+		"lineWidth": 120,
+		"indentWidth": 4,
+		"useTabs": true,
+		"semiColons": true
+	}
 }

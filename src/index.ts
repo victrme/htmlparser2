@@ -2,19 +2,13 @@ import { Parser, type ParserOptions } from "./Parser.ts";
 export type { Handler, ParserOptions } from "./Parser.ts";
 export { Parser } from "./Parser.ts";
 
-import {
-    type ChildNode,
-    type Document,
-    DomHandler,
-    type DomHandlerOptions,
-    type Element,
-} from "domhandler";
+import { type ChildNode, type Document, DomHandler, type DomHandlerOptions, type Element } from "domhandler";
 
 export {
-    DomHandler,
-    // Old name for DomHandler
-    DomHandler as DefaultHandler,
-    type DomHandlerOptions,
+	DomHandler,
+	// Old name for DomHandler
+	DomHandler as DefaultHandler,
+	type DomHandlerOptions,
 } from "domhandler";
 
 export type Options = ParserOptions & DomHandlerOptions;
@@ -27,10 +21,13 @@ export type Options = ParserOptions & DomHandlerOptions;
  * @param data The data that should be parsed.
  * @param options Optional options for the parser and DOM handler.
  */
-export function parseDocument(data: string, options?: Options): Document {
-    const handler = new DomHandler(undefined, options);
-    new Parser(handler, options).end(data);
-    return handler.root;
+export function parseDocument(
+	data: string,
+	options?: Options,
+): Document {
+	const handler = new DomHandler(undefined, options);
+	new Parser(handler, options).end(data);
+	return handler.root;
 }
 /**
  * Parses data, returns an array of the root nodes.
@@ -42,8 +39,11 @@ export function parseDocument(data: string, options?: Options): Document {
  * @param options Optional options for the parser and DOM handler.
  * @deprecated Use `parseDocument` instead.
  */
-export function parseDOM(data: string, options?: Options): ChildNode[] {
-    return parseDocument(data, options).children;
+export function parseDOM(
+	data: string,
+	options?: Options,
+): ChildNode[] {
+	return parseDocument(data, options).children;
 }
 /**
  * Creates a parser instance, with an attached DOM handler.
@@ -53,16 +53,16 @@ export function parseDOM(data: string, options?: Options): ChildNode[] {
  * @param elementCallback An optional callback that will be called every time a tag has been completed inside of the DOM.
  */
 export function createDocumentStream(
-    callback: (error: Error | null, document: Document) => void,
-    options?: Options,
-    elementCallback?: (element: Element) => void,
+	callback: (error: Error | null, document: Document) => void,
+	options?: Options,
+	elementCallback?: (element: Element) => void,
 ): Parser {
-    const handler: DomHandler = new DomHandler(
-        (error: Error | null) => callback(error, handler.root),
-        options,
-        elementCallback,
-    );
-    return new Parser(handler, options);
+	const handler: DomHandler = new DomHandler(
+		(error: Error | null) => callback(error, handler.root),
+		options,
+		elementCallback,
+	);
+	return new Parser(handler, options);
 }
 /**
  * Creates a parser instance, with an attached DOM handler.
@@ -73,19 +73,19 @@ export function createDocumentStream(
  * @deprecated Use `createDocumentStream` instead.
  */
 export function createDomStream(
-    callback: (error: Error | null, dom: ChildNode[]) => void,
-    options?: Options,
-    elementCallback?: (element: Element) => void,
+	callback: (error: Error | null, dom: ChildNode[]) => void,
+	options?: Options,
+	elementCallback?: (element: Element) => void,
 ): Parser {
-    const handler = new DomHandler(callback, options, elementCallback);
-    return new Parser(handler, options);
+	const handler = new DomHandler(
+		callback,
+		options,
+		elementCallback,
+	);
+	return new Parser(handler, options);
 }
 
-export {
-    type Callbacks as TokenizerCallbacks,
-    default as Tokenizer,
-    QuoteType,
-} from "./Tokenizer.ts";
+export { type Callbacks as TokenizerCallbacks, default as Tokenizer, QuoteType } from "./Tokenizer.ts";
 
 /*
  * All of the following exports exist for backwards-compatibility.
@@ -106,10 +106,10 @@ const parseFeedDefaultOptions = { xmlMode: true };
  * @param options Optionally, options for parsing. When using this, you should set `xmlMode` to `true`.
  */
 export function parseFeed(
-    feed: string,
-    options: Options = parseFeedDefaultOptions,
+	feed: string,
+	options: Options = parseFeedDefaultOptions,
 ): Feed | null {
-    return getFeed(parseDOM(feed, options));
+	return getFeed(parseDOM(feed, options));
 }
 
 export * as DomUtils from "domutils";

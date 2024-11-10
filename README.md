@@ -129,17 +129,3 @@ html-parser        : 28.6282 ms/file ± 22.6652
 saxes              : 45.7921 ms/file ± 128.691
 html5              : 120.844 ms/file ± 153.944
 ```
-
-## How does this module differ from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
-
-In 2011, this module started as a fork of the `htmlparser` module. `htmlparser2` was rewritten multiple times and, while
-it maintains an API that's mostly compatible with `htmlparser`, the projects don't share any code anymore.
-
-The parser now provides a callback interface inspired by [sax.js](https://github.com/isaacs/sax-js) (originally targeted
-at [readabilitySAX](https://github.com/fb55/readabilitysax)). As a result, old handlers won't work anymore.
-
-The `DefaultHandler` was renamed to clarify its purpose (to `DomHandler`). The old name is still available when
-requiring `htmlparser2` and your code should work as expected.
-
-The `RssHandler` was replaced with a `getFeed` function that takes a `DomHandler` DOM and returns a feed object. There
-is a `parseFeed` helper function that can be used to parse a feed from a string.

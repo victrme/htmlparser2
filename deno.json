@@ -1,6 +1,6 @@
 {
 	"name": "@victr/htmlparser2",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Fast & forgiving HTML/XML parser, on JSR.io",
 	"keywords": [
 		"html",
@@ -24,7 +24,7 @@
 		"test": "deno test"
 	},
 	"publish": {
-		"include": ["src"],
+		"include": ["src", "LICENSE", "README.md"],
 		"exclude": ["src/tests", ".github"]
 	},
 	"exports": "./src/index.ts",

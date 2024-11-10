@@ -11,15 +11,6 @@ _htmlparser2 is [the fastest HTML parser](#performance), and takes some
 shortcuts to get there. If you need strict HTML spec compliance, have a look at
 [parse5](https://github.com/inikulin/parse5)._
 
-## Installation
-
-```bash
-npm install htmlparser2
-```
-
-A live demo of `htmlparser2` is available
-[on AST Explorer](https://astexplorer.net/#/2AmVrGuGVJ).
-
 ## Ecosystem
 
 | Name                                                          | Description                                             |
@@ -38,7 +29,7 @@ documents with minimal allocations. For a more ergonomic experience, read
 [Getting a DOM](#getting-a-dom) below.
 
 ```js
-import * as htmlparser2 from "htmlparser2";
+import * as htmlparser2 from "@victr/htmlparser2";
 
 const parser = new htmlparser2.Parser({
     onopentag(name, attributes) {
@@ -99,7 +90,7 @@ The `DomHandler` produces a DOM (document object model) that can be manipulated
 using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
 
 ```js
-import * as htmlparser2 from "htmlparser2";
+import * as htmlparser2 from "@victr/htmlparser2";
 
 const dom = htmlparser2.parseDocument(htmlString);
 ```

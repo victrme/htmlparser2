@@ -23,9 +23,11 @@
 		"lint": "deno lint",
 		"test": "deno test"
 	},
-	"files": ["src"],
+	"publish": {
+		"include": ["src"],
+		"exclude": ["src/tests", ".github"]
+	},
 	"exports": "./src/index.ts",
-	"exclude": ["src/tests"],
 	"imports": {
 		"domelementtype": "npm:domelementtype@^2.3.0",
 		"domhandler": "npm:domhandler@^5.0.3",

@@ -1,6 +1,6 @@
 {
 	"name": "@victr/htmlparser2",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Fast & forgiving HTML/XML parser, on JSR.io",
 	"keywords": [
 		"html",

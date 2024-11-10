@@ -1,6 +1,6 @@
-import { describe, it, expect, vi } from "vitest";
-import { Parser, Tokenizer } from "./index.js";
-import type { Handler } from "./Parser.js";
+import { describe, expect, it, vi } from "vitest";
+import { Parser, Tokenizer } from "../index.ts";
+import type { Handler } from "../Parser.ts";
 
 describe("API", () => {
     it("should work without callbacks", () => {

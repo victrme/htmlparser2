@@ -1,13 +1,13 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import {
-    parseDocument,
-    parseDOM,
     createDocumentStream,
     createDomStream,
-    DomHandler,
     DefaultHandler,
+    DomHandler,
+    parseDocument,
+    parseDOM,
     type Parser,
-} from "./index.js";
+} from "../index.ts";
 import { Element } from "domhandler";
 
 // Add an `attributes` prop to the Element for now, to make it possible for Jest to render DOM nodes.
@@ -37,10 +37,12 @@ describe("Index", () => {
         let documentStream!: Parser;
 
         const documentPromise = new Promise(
-            (resolve, reject) =>
-                (documentStream = createDocumentStream((error, dom) =>
-                    error ? reject(error) : resolve(dom),
-                )),
+            (
+                resolve,
+                reject,
+            ) => (documentStream = createDocumentStream((error, dom) =>
+                error ? reject(error) : resolve(dom)
+            )),
         );
 
         for (const c of "&amp;This is text<!-- and comments --><tags>") {
@@ -56,10 +58,12 @@ describe("Index", () => {
         let domStream!: Parser;
 
         const domPromise = new Promise(
-            (resolve, reject) =>
-                (domStream = createDomStream((error, dom) =>
-                    error ? reject(error) : resolve(dom),
-                )),
+            (
+                resolve,
+                reject,
+            ) => (domStream = createDomStream((error, dom) =>
+                error ? reject(error) : resolve(dom)
+            )),
         );
 
         for (const c of "&amp;This is text<!-- and comments --><tags>") {

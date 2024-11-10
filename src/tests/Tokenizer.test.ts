@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import { Tokenizer } from "./index.js";
-import type { Callbacks } from "./Tokenizer.js";
+import { describe, expect, it } from "vitest";
+import { Tokenizer } from "../index.ts";
+import type { Callbacks } from "../Tokenizer.ts";
 
 function tokenize(data: string, options = {}) {
     const log: unknown[][] = [];

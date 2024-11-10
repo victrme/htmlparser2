@@ -1,15 +1,13 @@
 # htmlparser2
 
 [![NPM version](https://img.shields.io/npm/v/htmlparser2.svg)](https://npmjs.org/package/htmlparser2)
+[![JSR Version](https://img.shields.io/jsr/v/%40victr/htmlparser2)](https://jsr.io/@victr/htmlparser2)
 [![Downloads](https://img.shields.io/npm/dm/htmlparser2.svg)](https://npmjs.org/package/htmlparser2)
-[![Node.js CI](https://github.com/fb55/htmlparser2/actions/workflows/nodejs-test.yml/badge.svg)](https://github.com/fb55/htmlparser2/actions/workflows/nodejs-test.yml)
-[![Coverage](https://img.shields.io/coveralls/fb55/htmlparser2.svg)](https://coveralls.io/r/fb55/htmlparser2)
 
 The fast & forgiving HTML/XML parser, on JSR.io.
 
-_htmlparser2 is [the fastest HTML parser](#performance), and takes some
-shortcuts to get there. If you need strict HTML spec compliance, have a look at
-[parse5](https://github.com/inikulin/parse5)._
+_htmlparser2 is [the fastest HTML parser](#performance), and takes some shortcuts to get there. If you need strict HTML
+spec compliance, have a look at [parse5](https://github.com/inikulin/parse5)._
 
 ## Ecosystem
 
@@ -24,49 +22,50 @@ shortcuts to get there. If you need strict HTML spec compliance, have a look at
 
 ## Usage
 
-`htmlparser2` itself provides a callback interface that allows consumption of
-documents with minimal allocations. For a more ergonomic experience, read
-[Getting a DOM](#getting-a-dom) below.
+`htmlparser2` itself provides a callback interface that allows consumption of documents with minimal allocations. For a
+more ergonomic experience, read [Getting a DOM](#getting-a-dom) below.
 
 ```js
 import * as htmlparser2 from "@victr/htmlparser2";
 
 const parser = new htmlparser2.Parser({
-    onopentag(name, attributes) {
-        /*
-         * This fires when a new tag is opened.
-         *
-         * If you don't need an aggregated `attributes` object,
-         * have a look at the `onopentagname` and `onattribute` events.
-         */
-        if (name === "script" && attributes.type === "text/javascript") {
-            console.log("JS! Hooray!");
-        }
-    },
-    ontext(text) {
-        /*
-         * Fires whenever a section of text was processed.
-         *
-         * Note that this can fire at any point within text and you might
-         * have to stitch together multiple pieces.
-         */
-        console.log("-->", text);
-    },
-    onclosetag(tagname) {
-        /*
-         * Fires when a tag is closed.
-         *
-         * You can rely on this event only firing when you have received an
-         * equivalent opening tag before. Closing tags without corresponding
-         * opening tags will be ignored.
-         */
-        if (tagname === "script") {
-            console.log("That's it?!");
-        }
-    },
+  onopentag(name, attributes) {
+    /*
+     * This fires when a new tag is opened.
+     *
+     * If you don't need an aggregated `attributes` object,
+     * have a look at the `onopentagname` and `onattribute` events.
+     */
+    if (
+      name === "script" && attributes.type === "text/javascript"
+    ) {
+      console.log("JS! Hooray!");
+    }
+  },
+  ontext(text) {
+    /*
+     * Fires whenever a section of text was processed.
+     *
+     * Note that this can fire at any point within text and you might
+     * have to stitch together multiple pieces.
+     */
+    console.log("-->", text);
+  },
+  onclosetag(tagname) {
+    /*
+     * Fires when a tag is closed.
+     *
+     * You can rely on this event only firing when you have received an
+     * equivalent opening tag before. Closing tags without corresponding
+     * opening tags will be ignored.
+     */
+    if (tagname === "script") {
+      console.log("That's it?!");
+    }
+  },
 });
 parser.write(
-    "Xyz <script type='text/javascript'>const foo = '<<bar>>';</script>",
+  "Xyz <script type='text/javascript'>const foo = '<<bar>>';</script>",
 );
 parser.end();
 ```
@@ -80,14 +79,13 @@ JS! Hooray!
 That's it?!
 ```
 
-This example only shows three of the possible events. Read more about the
-parser, its events and options in the
+This example only shows three of the possible events. Read more about the parser, its events and options in the
 [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
 
 ## Getting a DOM
 
-The `DomHandler` produces a DOM (document object model) that can be manipulated
-using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
+The `DomHandler` produces a DOM (document object model) that can be manipulated using the
+[`DomUtils`](https://github.com/fb55/DomUtils) helper.
 
 ```js
 import * as htmlparser2 from "@victr/htmlparser2";
@@ -96,13 +94,11 @@ const dom = htmlparser2.parseDocument(htmlString);
 ```
 
 The `DomHandler`, while still bundled with this module, was moved to its
-[own module](https://github.com/fb55/domhandler). Have a look at that for
-further information.
+[own module](https://github.com/fb55/domhandler). Have a look at that for further information.
 
 ## Parsing Feeds
 
-`htmlparser2` makes it easy to parse RSS, RDF and Atom feeds, by providing a
-`parseFeed` method:
+`htmlparser2` makes it easy to parse RSS, RDF and Atom feeds, by providing a `parseFeed` method:
 
 ```javascript
 const feed = htmlparser2.parseFeed(content, options);
@@ -110,13 +106,12 @@ const feed = htmlparser2.parseFeed(content, options);
 
 ## Performance
 
-After having some artificial benchmarks for some time, **@AndreasMadsen**
-published his
-[`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark),
-which benchmarks HTML parses based on real-world websites.
+After having some artificial benchmarks for some time, **@AndreasMadsen** published his
+[`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark), which benchmarks HTML parses based on
+real-world websites.
 
-At the time of writing, the latest versions of all supported parsers show the
-following performance characteristics on GitHub Actions (sourced from
+At the time of writing, the latest versions of all supported parsers show the following performance characteristics on
+GitHub Actions (sourced from
 [here](https://github.com/AndreasMadsen/htmlparser-benchmark/blob/e78cd8fc6c2adac08deedd4f274c33537451186b/stats.txt)):
 
 ```
@@ -137,19 +132,14 @@ html5              : 120.844 ms/file ± 153.944
 
 ## How does this module differ from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 
-In 2011, this module started as a fork of the `htmlparser` module. `htmlparser2`
-was rewritten multiple times and, while it maintains an API that's mostly
-compatible with `htmlparser`, the projects don't share any code anymore.
+In 2011, this module started as a fork of the `htmlparser` module. `htmlparser2` was rewritten multiple times and, while
+it maintains an API that's mostly compatible with `htmlparser`, the projects don't share any code anymore.
 
-The parser now provides a callback interface inspired by
-[sax.js](https://github.com/isaacs/sax-js) (originally targeted at
-[readabilitySAX](https://github.com/fb55/readabilitysax)). As a result, old
-handlers won't work anymore.
+The parser now provides a callback interface inspired by [sax.js](https://github.com/isaacs/sax-js) (originally targeted
+at [readabilitySAX](https://github.com/fb55/readabilitysax)). As a result, old handlers won't work anymore.
 
-The `DefaultHandler` was renamed to clarify its purpose (to `DomHandler`). The
-old name is still available when requiring `htmlparser2` and your code should
-work as expected.
+The `DefaultHandler` was renamed to clarify its purpose (to `DomHandler`). The old name is still available when
+requiring `htmlparser2` and your code should work as expected.
 
-The `RssHandler` was replaced with a `getFeed` function that takes a
-`DomHandler` DOM and returns a feed object. There is a `parseFeed` helper
-function that can be used to parse a feed from a string.
+The `RssHandler` was replaced with a `getFeed` function that takes a `DomHandler` DOM and returns a feed object. There
+is a `parseFeed` helper function that can be used to parse a feed from a string.

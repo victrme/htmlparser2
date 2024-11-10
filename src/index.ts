@@ -1,13 +1,13 @@
-import { Parser, type ParserOptions } from "./Parser.js";
-export type { Handler, ParserOptions } from "./Parser.js";
-export { Parser } from "./Parser.js";
+import { Parser, type ParserOptions } from "./Parser.ts";
+export type { Handler, ParserOptions } from "./Parser.ts";
+export { Parser } from "./Parser.ts";
 
 import {
+    type ChildNode,
+    type Document,
     DomHandler,
     type DomHandlerOptions,
-    type ChildNode,
     type Element,
-    type Document,
 } from "domhandler";
 
 export {
@@ -82,10 +82,10 @@ export function createDomStream(
 }
 
 export {
-    default as Tokenizer,
     type Callbacks as TokenizerCallbacks,
+    default as Tokenizer,
     QuoteType,
-} from "./Tokenizer.js";
+} from "./Tokenizer.ts";
 
 /*
  * All of the following exports exist for backwards-compatibility.
@@ -93,9 +93,9 @@ export {
  */
 export * as ElementType from "domelementtype";
 
-import { getFeed, type Feed } from "domutils";
+import { type Feed, getFeed } from "domutils";
 
-export { getFeed, type Feed } from "domutils";
+export { type Feed, getFeed } from "domutils";
 
 const parseFeedDefaultOptions = { xmlMode: true };
 

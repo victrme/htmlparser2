@@ -1,4 +1,4 @@
-import Tokenizer, { type Callbacks, QuoteType } from "./Tokenizer.js";
+import Tokenizer, { type Callbacks, QuoteType } from "./Tokenizer.ts";
 import { fromCodePoint } from "entities/dist/decode.js";
 
 const formTags = new Set([
@@ -171,7 +171,6 @@ export interface Handler {
     onclosetag(name: string, isImplied: boolean): void;
     onopentagname(name: string): void;
     /**
-     *
      * @param name Name of the attribute
      * @param value Value of the attribute.
      * @param quote Quotes used around the attribute. `null` if the attribute has no quotes around the value, `undefined` if the attribute has no value.
@@ -236,10 +235,10 @@ export class Parser implements Callbacks {
         this.cbs = cbs ?? {};
         this.htmlMode = !this.options.xmlMode;
         this.lowerCaseTagNames = options.lowerCaseTags ?? this.htmlMode;
-        this.lowerCaseAttributeNames =
-            options.lowerCaseAttributeNames ?? this.htmlMode;
-        this.recognizeSelfClosing =
-            options.recognizeSelfClosing ?? !this.htmlMode;
+        this.lowerCaseAttributeNames = options.lowerCaseAttributeNames ??
+            this.htmlMode;
+        this.recognizeSelfClosing = options.recognizeSelfClosing ??
+            !this.htmlMode;
         this.tokenizer = new (options.Tokenizer ?? Tokenizer)(
             this.options,
             this,
@@ -434,10 +433,10 @@ export class Parser implements Callbacks {
             quote === QuoteType.Double
                 ? '"'
                 : quote === QuoteType.Single
-                  ? "'"
-                  : quote === QuoteType.NoValue
-                    ? undefined
-                    : null,
+                ? "'"
+                : quote === QuoteType.NoValue
+                ? undefined
+                : null,
         );
 
         if (

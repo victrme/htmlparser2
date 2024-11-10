@@ -5,15 +5,20 @@
 [![Node.js CI](https://github.com/fb55/htmlparser2/actions/workflows/nodejs-test.yml/badge.svg)](https://github.com/fb55/htmlparser2/actions/workflows/nodejs-test.yml)
 [![Coverage](https://img.shields.io/coveralls/fb55/htmlparser2.svg)](https://coveralls.io/r/fb55/htmlparser2)
 
-The fast & forgiving HTML/XML parser.
+The fast & forgiving HTML/XML parser, on JSR.io.
 
-_htmlparser2 is [the fastest HTML parser](#performance), and takes some shortcuts to get there. If you need strict HTML spec compliance, have a look at [parse5](https://github.com/inikulin/parse5)._
+_htmlparser2 is [the fastest HTML parser](#performance), and takes some
+shortcuts to get there. If you need strict HTML spec compliance, have a look at
+[parse5](https://github.com/inikulin/parse5)._
 
 ## Installation
 
-    npm install htmlparser2
+```bash
+npm install htmlparser2
+```
 
-A live demo of `htmlparser2` is available [on AST Explorer](https://astexplorer.net/#/2AmVrGuGVJ).
+A live demo of `htmlparser2` is available
+[on AST Explorer](https://astexplorer.net/#/2AmVrGuGVJ).
 
 ## Ecosystem
 
@@ -28,8 +33,9 @@ A live demo of `htmlparser2` is available [on AST Explorer](https://astexplorer.
 
 ## Usage
 
-`htmlparser2` itself provides a callback interface that allows consumption of documents with minimal allocations.
-For a more ergonomic experience, read [Getting a DOM](#getting-a-dom) below.
+`htmlparser2` itself provides a callback interface that allows consumption of
+documents with minimal allocations. For a more ergonomic experience, read
+[Getting a DOM](#getting-a-dom) below.
 
 ```js
 import * as htmlparser2 from "htmlparser2";
@@ -83,30 +89,14 @@ JS! Hooray!
 That's it?!
 ```
 
-This example only shows three of the possible events.
-Read more about the parser, its events and options in the [wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
-
-### Usage with streams
-
-While the `Parser` interface closely resembles Node.js streams, it's not a 100% match.
-Use the `WritableStream` interface to process a streaming input:
-
-```js
-import { WritableStream } from "htmlparser2/lib/WritableStream";
-
-const parserStream = new WritableStream({
-    ontext(text) {
-        console.log("Streaming:", text);
-    },
-});
-
-const htmlStream = fs.createReadStream("./my-file.html");
-htmlStream.pipe(parserStream).on("finish", () => console.log("done"));
-```
+This example only shows three of the possible events. Read more about the
+parser, its events and options in the
+[wiki](https://github.com/fb55/htmlparser2/wiki/Parser-options).
 
 ## Getting a DOM
 
-The `DomHandler` produces a DOM (document object model) that can be manipulated using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
+The `DomHandler` produces a DOM (document object model) that can be manipulated
+using the [`DomUtils`](https://github.com/fb55/DomUtils) helper.
 
 ```js
 import * as htmlparser2 from "htmlparser2";
@@ -114,12 +104,14 @@ import * as htmlparser2 from "htmlparser2";
 const dom = htmlparser2.parseDocument(htmlString);
 ```
 
-The `DomHandler`, while still bundled with this module, was moved to its [own module](https://github.com/fb55/domhandler).
-Have a look at that for further information.
+The `DomHandler`, while still bundled with this module, was moved to its
+[own module](https://github.com/fb55/domhandler). Have a look at that for
+further information.
 
 ## Parsing Feeds
 
-`htmlparser2` makes it easy to parse RSS, RDF and Atom feeds, by providing a `parseFeed` method:
+`htmlparser2` makes it easy to parse RSS, RDF and Atom feeds, by providing a
+`parseFeed` method:
 
 ```javascript
 const feed = htmlparser2.parseFeed(content, options);
@@ -127,9 +119,14 @@ const feed = htmlparser2.parseFeed(content, options);
 
 ## Performance
 
-After having some artificial benchmarks for some time, **@AndreasMadsen** published his [`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark), which benchmarks HTML parses based on real-world websites.
+After having some artificial benchmarks for some time, **@AndreasMadsen**
+published his
+[`htmlparser-benchmark`](https://github.com/AndreasMadsen/htmlparser-benchmark),
+which benchmarks HTML parses based on real-world websites.
 
-At the time of writing, the latest versions of all supported parsers show the following performance characteristics on GitHub Actions (sourced from [here](https://github.com/AndreasMadsen/htmlparser-benchmark/blob/e78cd8fc6c2adac08deedd4f274c33537451186b/stats.txt)):
+At the time of writing, the latest versions of all supported parsers show the
+following performance characteristics on GitHub Actions (sourced from
+[here](https://github.com/AndreasMadsen/htmlparser-benchmark/blob/e78cd8fc6c2adac08deedd4f274c33537451186b/stats.txt)):
 
 ```
 htmlparser2        : 2.17215 ms/file ± 3.81587
@@ -149,23 +146,36 @@ html5              : 120.844 ms/file ± 153.944
 
 ## How does this module differ from [node-htmlparser](https://github.com/tautologistics/node-htmlparser)?
 
-In 2011, this module started as a fork of the `htmlparser` module.
-`htmlparser2` was rewritten multiple times and, while it maintains an API that's mostly compatible with `htmlparser`, the projects don't share any code anymore.
+In 2011, this module started as a fork of the `htmlparser` module. `htmlparser2`
+was rewritten multiple times and, while it maintains an API that's mostly
+compatible with `htmlparser`, the projects don't share any code anymore.
 
-The parser now provides a callback interface inspired by [sax.js](https://github.com/isaacs/sax-js) (originally targeted at [readabilitySAX](https://github.com/fb55/readabilitysax)).
-As a result, old handlers won't work anymore.
+The parser now provides a callback interface inspired by
+[sax.js](https://github.com/isaacs/sax-js) (originally targeted at
+[readabilitySAX](https://github.com/fb55/readabilitysax)). As a result, old
+handlers won't work anymore.
 
-The `DefaultHandler` was renamed to clarify its purpose (to `DomHandler`). The old name is still available when requiring `htmlparser2` and your code should work as expected.
+The `DefaultHandler` was renamed to clarify its purpose (to `DomHandler`). The
+old name is still available when requiring `htmlparser2` and your code should
+work as expected.
 
-The `RssHandler` was replaced with a `getFeed` function that takes a `DomHandler` DOM and returns a feed object. There is a `parseFeed` helper function that can be used to parse a feed from a string.
+The `RssHandler` was replaced with a `getFeed` function that takes a
+`DomHandler` DOM and returns a feed object. There is a `parseFeed` helper
+function that can be used to parse a feed from a string.
 
 ## Security contact information
 
-To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security).
-Tidelift will coordinate the fix and disclosure.
+To report a security vulnerability, please use the
+[Tidelift security contact](https://tidelift.com/security). Tidelift will
+coordinate the fix and disclosure.
 
 ## `htmlparser2` for enterprise
 
 Available as part of the Tidelift Subscription.
 
-The maintainers of `htmlparser2` and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. [Learn more.](https://tidelift.com/subscription/pkg/npm-htmlparser2?utm_source=npm-htmlparser2&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)
+The maintainers of `htmlparser2` and thousands of other packages are working
+with Tidelift to deliver commercial support and maintenance for the open source
+dependencies you use to build your applications. Save time, reduce risk, and
+improve code health, while paying the maintainers of the exact dependencies you
+use.
+[Learn more.](https://tidelift.com/subscription/pkg/npm-htmlparser2?utm_source=npm-htmlparser2&utm_medium=referral&utm_campaign=enterprise&utm_term=repo)

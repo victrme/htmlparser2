@@ -1,4 +1,4 @@
-import type { Parser, Handler } from "../Parser.js";
+import type { Handler, Parser } from "../Parser.ts";
 
 interface Event {
     $event: string;
@@ -82,10 +82,8 @@ export function getEventCollector(
     return new Proxy(
         {},
         {
-            get:
-                (_, event: string) =>
-                (...data: unknown[]) =>
-                    handle(event, data),
+            get: (_, event: string) => (...data: unknown[]) =>
+                handle(event, data),
         },
     );
 }

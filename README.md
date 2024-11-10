@@ -1,7 +1,7 @@
 # htmlparser2
 
-[![NPM version](https://img.shields.io/npm/v/htmlparser2.svg)](https://npmjs.org/package/htmlparser2)
-[![JSR Version](https://img.shields.io/jsr/v/%40victr/htmlparser2)](https://jsr.io/@victr/htmlparser2)
+[![NPM Version](https://img.shields.io/npm/v/htmlparser2?color=%23cb3837)](https://npmjs.org/package/htmlparser2)
+[![JSR Version](https://img.shields.io/jsr/v/%40victr/htmlparser2?color=rgb(247%2C%20223%2C%2030))](https://jsr.io/@victr/htmlparser2)
 [![Downloads](https://img.shields.io/npm/dm/htmlparser2.svg)](https://npmjs.org/package/htmlparser2)
 
 The fast & forgiving HTML/XML parser, on JSR.io.

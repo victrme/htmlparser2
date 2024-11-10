@@ -1,6 +1,6 @@
 {
   "name": "@victr/htmlparser2",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Fast & forgiving HTML/XML parser, on JSR.io",
   "keywords": [
     "html",
@@ -18,41 +18,21 @@
   },
   "license": "MIT",
   "author": "Felix Boehm <me@feedic.com>",
-  "exports": "./src/index.ts",
-  "files": ["src"],
-  "exclude": ["src/*.spec.ts", "src/__fixtures__"],
-  "scripts": {
-    "format": "npm run format:es && npm run format:prettier",
-    "format:es": "npm run lint:es -- --fix",
-    "format:prettier": "npm run format:prettier:raw -- --write",
-    "format:prettier:raw": "prettier '**/*.{ts,md,json,yml}'",
-    "lint": "npm run lint:es && npm run lint:ts && npm run lint:prettier",
-    "lint:es": "eslint src",
-    "lint:prettier": "npm run format:prettier:raw -- --check",
-    "lint:ts": "tsc --noEmit",
-    "test": "npm run test:vi && npm run lint",
-    "test:vi": "vitest run"
+  "tasks": {
+    "format": "deno fmt",
+    "lint": "deno lint",
+    "test": "deno test"
   },
   "fmt": {
     "tabWidth": 4
   },
+  "files": ["src"],
+  "exports": "./src/index.ts",
+  "exclude": ["src/tests"],
   "imports": {
     "domelementtype": "npm:domelementtype@^2.3.0",
     "domhandler": "npm:domhandler@^5.0.3",
     "domutils": "npm:domutils@^3.1.0",
     "entities": "npm:entities@^5.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.9.0",
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
-    "@vitest/coverage-v8": "^2.1.4",
-    "eslint": "^8.57.1",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-n": "^17.13.1",
-    "eslint-plugin-unicorn": "^54.0.0",
-    "prettier": "^3.3.3",
-    "typescript": "^5.6.3",
-    "vitest": "^2.0.2"
   }
 }
